@@ -1,4 +1,5 @@
-# WOK-AND-GRILL-2
+# WOK-AND-GRILL
+## Working on hosting on a live site.
 Admin Login: admin@email.com
 password: 1234
 
