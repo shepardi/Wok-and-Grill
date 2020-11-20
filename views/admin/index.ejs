@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="/style/main.css" type="text/css" />
+    <link href="/style/carosel.css" rel="stylesheet" />
+    <title>Wok & Grill Admin</title>
+</head>
+
+<body>
+    <!-- BootStrap Script Files -->
+    <%- include('../partials/bootstrapScripts') %>
+
+    <!-- Header Section -->
+    <header><%- include('../partials/nav')%></header>
+
+    <!-- Page Content -->
+    <div class="container mt-4">
+
+        <!-- Title -->
+        <h1 class="mt-4 mb-3">
+            Admin Editor
+            <small></small>
+        </h1>
+
+        <ol class="breadcrumb">
+            <!-- <li class="breadcrumb-item">
+            <a href="/admin">Admin</a>
+        </li> -->
+
+            <li class="breadcrumb-item active">Admin Site Editor</li>
+
+            <!-- Back Button -->
+            <li class="breadcrumb-item">
+                <a href="javascript:history.back()"> ... Previous Page</a>
+            </li>
+        </ol>
+
+        <!-- Page Content -->
+        <main>
+
+            <!-- Edit Menu And Items -->
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-light"><a href="/menu/new">Create Menu</a></button>
+                <button type="button" class="btn btn-light"><a href="/items/new">Create Items</a></button>
+            </div>
+
+            <!-- Table of Items -->
+            <div class="container mt-4 p-4 border-black">
+                <!-- Table Title -->
+                <h2 class="text-center">Items</h2>
+                <p class="text-center">Click to Edit</p>
+                <table class="table table-hover table-dark table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <th>Include Items</th>
+                    </tr>
+                    <% for( let index = 0; index < allMenu.length; index++ ) { %>
+                    <tr>
+                        <td><a href="/menu/<%= allMenu[index]._id %>/edit"><%= allMenu[index].name%></a></td>
+                        <td> <% allMenu[index].items.forEach(item => { %>
+                            <a href="/items/<%= item._id  %>/edit "><%= item.name %> </a><br>
+                            <% }) %></td>
+                    </tr>
+                    <% } %>
+                </table>
+            </div>
+
+            <!-- Comments Wall EDITOR -->
+            <div class="container mt-4 p-4 border-black">
+                <!-- Table Title -->
+                <h2 class="text-center">Comments</h2>
+                <table class="table table-hover table-dark table-bordered">
+                    <tr>
+                        <th>Name</th>
+                        <th>Comment</th>
+                        <th>Deleted</th>
+                    </tr>
+                    <% for( let index = 0; index < allComment.length; index++ ) { %>
+                    <tr>
+                        <td><%= allComment[index].name%></td>
+                        <td> <%= allComment[index].text%></td>
+                        <td>
+                            <form action="/comments/<%= allComment[index]._id %>?_method=DELETE" method="POST">
+                                <input type="submit" value="Delete">
+                            </form>
+                        </td>
+                    </tr>
+                    <% } %>
+                </table>
+            </div>
+
+
+            <!-- Hours EDITOR -->
+            <div class="container mt-4 p-4 border-black">
+                <!-- Table Title -->
+                <h2 class="text-center">Office Hour</h2>
+                <table class="table table-hover table-dark table-bordered">
+                    <tr>
+                        <th>Day</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Update</th>
+                    </tr>
+                    <% for( let j = 0; j < day.length; j++ ) { %>
+                    <% for( let index = 0; index < allHour.length; index++ ) { %>
+                    <% if (allHour[index].day === day[j]) { %>
+                    <tr>
+                        <form action="/hour/<%= allHour[index]._id %>?_method=PUT" method="POST">
+                            <td><%= allHour[index].day%></td>
+                            <td><input type="text" name="start" placeholder="<%= allHour[index].start %>" required></td>
+                            <td><input type="text" name="end" placeholder="<%= allHour[index].end%>" required></td>
+                            <td><input type="submit" value="Update"></td>
+                        </form>
+                    </tr>
+                    <% } %>
+                    <% } %>
+                    <% } %>
+                </table>
+            </div>
+
+
+            <!-- SLide Banner EDITOR -->
+            <div class="container mt-4 p-4 border-black">
+                <!-- Table Title -->
+                <h2 class="text-center">Home Page Slides</h2>
+                <table class="table table-hover table-dark table-bordered">
+                    <tr>
+                        <th>Image</th>
+                        <th>Comment</th>
+                        <th>description</th>
+                        <th>Update</th>
+                    </tr>
+                    <% for( let index = 0; index < allSlide.length; index++ ) { %>
+                    <tr>
+                        <form action="/slide/<%= allSlide[index]._id %>?_method=PUT" method="POST">
+                            <td><input type="text" name="image" placeholder="<%= allSlide[index].image%>" value="<%= allSlide[index].image%>" required></td>
+                            <td><input type="text" name="comment" placeholder="<%= allSlide[index].comment%>" value="<%= allSlide[index].comment%>" required>
+                            <td><input type="text" name="description" placeholder="<%= allSlide[index].description%> " value="<%= allSlide[index].description%>" required>
+                            </td>
+                            <td><input type="submit" value="Update"></td>
+                        </form>
+                    </tr>
+                    <% } %>
+                </table>
+            </div>
+        </main>
+
+    </div>
+
+
+</body>
+
+</html>
