@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="/style/main.css" type="text/css" />
+    <link rel="stylesheet" href="/style/carosel.css" type="text/css" />
+    <title>Wok & Grill Homepage</title>
+</head>
+
+<body>
+    <!-- BootStrap Script Files -->
+    <%- include('partials/bootstrapScripts') %>
+
+    <!-- Header Section -->
+    <!-- Navagation -->
+    <header><%- include('partials/nav') %></header>
+
+    <!-- Advertizing Slides -->
+    <section class=" border-black ads">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+
+            <div class="carousel-inner" role="listbox">
+                <!-- Slide One -->
+                <div class="carousel-item active" style="background-image: url(<%= allSlide[0].image %>)">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3><%= allSlide[0].comment %></h3>
+                        <p><%= allSlide[0].description %></p>
+                    </div>
+                </div>
+
+                <!-- Slide Two  -->
+                <div class="carousel-item" style="background-image: url(<%= allSlide[1].image %>)">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3><%= allSlide[1].comment %></h3>
+                        <p><%= allSlide[1].description %></p>
+                    </div>
+                </div>
+
+                <!-- Slide Three -->
+                <div class="carousel-item" style="background-image: url(<%= allSlide[2].image %>)">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h3><%= allSlide[2].comment %></h3>
+                        <p><%= allSlide[2].description %></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Previous Slide -->
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+
+            <!-- Next Slide -->
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Section -->
+    <main class="border-black">
+        <!-- Chinese Food Proverb -->
+        <img class="proverb" src="images/chinese-proverb.png" alt="proverb" height="200">
+
+        <footer class="py-5 bg-dark">
+            <div class="container">
+                <p class="m-0 text-center text-white">
+                    Copyright &copy; Wok & Grill 2020
+                </p>
+            </div>
+        </footer>
+</body>
+
+</html>

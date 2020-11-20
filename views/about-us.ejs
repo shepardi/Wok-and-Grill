@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="/style/main.css" type="text/css">
+    <link href="/style/carosel.css" rel="stylesheet">
+    <title>Wok & Grill About us </title>
+</head>
+
+<body>
+    <!-- BootStrap Script Files -->
+    <%- include('partials/bootstrapScripts') %>
+    <!-- Header Section -->
+    <header>
+        <%- include('partials/nav') %>
+    </header>
+
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="container">
+          <!-- Title -->
+        <h1 class="mt-4 mb-3">
+            About Us
+            <small></small>
+        </h1>
+  
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Home</a>
+            </li>
+
+            <li class="breadcrumb-item active">About Us </li>
+
+            <!-- Back Button -->
+            <li class="breadcrumb-item">
+                <a href="javascript:history.back()"> ... Previous Page</a>
+            </li>
+        </ol>
+
+ 
+
+        <div class="row">
+            <!-- About Us Left Side Page -->
+            <div class="col-sm-6 col-lg-6">
+           
+                <div class="portfolio-item">
+                    
+                    <div class="card h-100">
+                     <!-- Store Image -->
+                      <img class="card-img-top" src="https://www.hawaiimagazine.com/sites/default/files/sites/default/files/Hawaiian-food-ThinkstockPhotos-488006550.jpg" alt="Menu Image" />
+                      
+                      <div class="card-body">
+                       
+                        <h4 class="card-title">Wok & Grill</h4>
+                         <!-- About Us Description -->
+                        <p>
+                            Wok and Grill is a resturant that serves a fusion Hawaiian Chinese dishes. Wok & Grill was established in 2003 and has 
+                            one of the best quality Hawaiin Chinese Food in the area.
+                        </p>
+
+                        <!-- Store Number -->
+                        <p>Phone: (909) 548-2088</p>
+
+                      </div>
+
+                    </div>
+                </div>
+    
+            </div>
+
+            <!-- About Us Right Side Page -->
+            <div class="col-sm-6">
+                <h2> Hours </h2>
+                <div class="container">
+                    <table class="table table-hover table-bordered">
+                        <tr>
+                            <th>Day</th>
+                            <th>Start</th>
+                            <th>End</th>
+                        </tr>
+                        <% for( let j = 0; j < day.length; j++ ) { %>
+                        <% for( let index = 0; index < allHour.length; index++ ) { %>
+                        <% if (allHour[index].day === day[j]) { %>
+                        <tr>
+                            <form action="/hour/<%= allHour[index]._id %>?_method=PUT" method="POST">
+                                <td><%= allHour[index].day%></td>
+                                <td><%= allHour[index].start%></td>
+                                <td><%= allHour[index].end%></td>
+                            </form>
+                        </tr>
+                        <% } %>
+                        <% } %>
+                        <% } %>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- footer -->
+    <%- include('partials/footer') %>
+</body>
+
+</html>

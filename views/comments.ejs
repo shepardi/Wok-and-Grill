@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="/style/main.css" type="text/css">
+    <link href="/style/carosel.css" rel="stylesheet">
+    <title>Wok & Grill Comments wall</title>
+</head>
+
+<body>
+    <!-- BootStrap Script Files -->
+    <%- include('partials/bootstrapScripts') %>
+
+    <!-- Header Section -->
+    <header><%- include('partials/nav') %></header>
+
+    <!-- Page Heading/Breadcrumbs -->
+    <div class="container">
+        <!-- Title -->
+        <h1 class="mt-4 mb-3">
+            Comment Wall
+            <small></small>
+        </h1>
+
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/">Home</a>
+            </li>
+
+            <li class="breadcrumb-item active">Comment Wall </li>
+
+            <!-- Back Button -->
+            <li class="breadcrumb-item">
+                <a href="javascript:history.back()"> ... Previous Page</a>
+            </li>
+        </ol>
+
+
+    <!-- ------------------- STICKY NOTE WALL --------------------------------------------- -->
+        
+        <!-- Comment User Input -->
+        <div class="mb-4" style="width:100%;">
+            <% if (user) { %>
+                <h4>Comment</h4>
+                <form action="/comments" method="POST">
+                    <textarea name="text" rows="3" cols="40"style="width:100%;"></textarea>
+                    <input type="submit" value="Create" class="d-block" style="width:100%;">
+                </form>
+                <% } else {%>
+                <h4>Please sign in to comment</h4>
+                <% } %>
+        </div>
+        
+        <div class="container">
+            <div class="row">
+                <!-- Stickys Notes List -->
+                <% allComments.forEach(comment => { %>
+                <!-- Change Sticky Note img -->
+                <div class="col-lg-3 col-sm-6 portfolio-item comments">
+                    <div class="comments-card overflow-auto" style="background-image: url('<%= comment.image%>');">
+                        <div class="card-body">
+                            <p class="card-text "><%= comment.text %></p>
+                            <p class="float-right">-<%= comment.name %></p><br>
+                            <!-- <p><%= comment.image %></p>          -->
+                        </div>
+                        <!-- Time Stamp -->
+                        <p class="date-text m-2">Date:
+                            <%= comment.date.getMonth() %>-<%= comment.date.getDate() %>-<%= comment.date.getFullYear() %>
+                        </p>
+                    </div>
+                </div>
+                <% }) %>
+            </div>
+            <!-- /.container -->
+        </div>
+
+        <!-- Delete Comment Disclaimer -->
+        <p class="text-center">Owner has right to deleted unappropriated comments</p>
+        <!-- ------------------- STICKY NOTE WALL --------------------------------------------- -->
+
+</div>
+
+
+        <!-- Footer -->
+        <%- include('partials/footer') %>
+
+</body>
+
+</html>
