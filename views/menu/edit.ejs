@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="/style/main.css" type="text/css">
+    <link href="/style/carosel.css" rel="stylesheet">
+    <title>Wok & Grill Menu Edit Page</title>
+</head>
+
+<body>
+    <!-- BootStrap Script Files -->
+    <%- include('../partials/bootstrapScripts') %>
+
+    <!-- Header Section -->
+    <header><%- include('../partials/nav') %></header>
+
+     <!-- Page Content -->
+  <div class="container mt-4">
+        <!-- Title -->
+        <h1 class="mt-4 mb-3">
+            Menu Category Edit Page
+        <small></small>
+        </h1>
+
+        <!-- BreakCrumb List -->
+        <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="/admin">Admin Site Editor</a>
+        </li>
+
+        <li class="breadcrumb-item active">Menu Edit</li>
+
+        <!-- Back Button -->
+        <li class="breadcrumb-item">
+            <a href="javascript:history.back()"> ... Previous Page</a>
+        </li>
+        </ol>
+
+        
+        <!-- Edit Button -->
+        <form action="/menu/<%= editedMenu._id %>?_method=PUT " method="POST" class="d-inline">
+            <p>Name: <input type="text" name="name" value="<%= editedMenu.name %>"></p>
+            <p>Image:<input type="text" name="image" value="<%= editedMenu.image %>"></p>
+            <input type="submit" value="Update">
+        </form>
+
+        <!-- Delete Button -->
+        <form action="/menu/<%= editedMenu._id %>?_method=DELETE " method="POST" class="d-inline">
+            <input type="submit" value="Delete" />
+        </form>
+    </div>
+
+</body>
+
+</html>

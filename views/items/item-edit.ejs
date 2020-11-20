@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Internal CSS -->
+    <link rel="stylesheet" href="/style/main.css" type="text/css">
+    <link rel="stylesheet" href="/style/carosel.css" type="text/css">
+    <title>Wok & Grill Items Edit Page</title>
+</head>
+
+<body>
+    <!-- BootStrap Script Files -->
+    <%- include('../partials/bootstrapScripts') %>
+
+    <!-- Header Section -->
+    <header> <%- include('../partials/nav') %></header>
+
+    <!-- Page Content -->
+    <div class="container mt-4">
+        <!-- Page Heading/Breadcrumbs -->
+    
+            <!-- Title -->
+            <h1 class="mt-4 mb-3">
+                Item Edit Page
+            <small></small>
+            </h1>
+        
+            <!-- BreakCrumb List -->
+            <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+                <a href="/admin">Admin Site Editor</a>
+            </li>
+        
+            <li class="breadcrumb-item active">Item Edit</li>
+        
+            <!-- Back Button -->
+            <li class="breadcrumb-item">
+                <a href="javascript:history.back()"> ... Previous Page</a>
+            </li>
+            </ol>
+
+
+        <main>
+            <div class="Item Container">
+                <!-- Item Edit Section -->
+                <form action="/items/<%= item._id %>?_method=PUT" method="POST">
+
+                    <!-- Item name -->
+                    <label for="name">Name</label>
+                    <input type="text" name="name" value="<%= item.name %>">
+
+                    <!-- Item Picture -->
+                    <label for="image">Image</label>
+                    <input type="text" name="image" value="<%= item.image %>">
+
+                    <!-- Item Rating -->
+                    <!-- <label for="image">Rating</label>
+                    <input type="text" name="rating" value=""> -->
+
+                    <!-- Spiciness -->
+                    <label for="spicy">Spicy</label>
+                    <input type="number" name="spicy" value="<%= item.spicy %>">
+
+                    <!-- Description -->
+                    <label for="description">Description</label>
+                    <input type="textarea" name="description" value="<%= item.description %>">
+
+                    <!-- Submit Button -->
+                    <input type="submit" value="Update Item">
+                </form>
+                <!-- delete -->
+                <form action="/items/<%= item._id %>?_method=DELETE" method="POST"><input type="submit" value="Delete Item">
+                </form>
+            </div>
+        </main>
+
+    </div>  
+</body>
+
+</html>
